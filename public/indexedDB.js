@@ -1,5 +1,5 @@
 let db;
-const request = indexedDB.open("budgetTracker", 1);
+const request = window.indexedDB.open("budgetTracker", 1);
 
 request.onupgradeneeded = function (event) {
   const updatedDB = event.target.result;
@@ -20,9 +20,6 @@ request.onerror = function (event) {
 
 //This is called in index.js in the CATCH of the POST request.
 function saveRecord(data) {
-  console.log("this is working");
-  console.log(data);
-
   const transaction = db.transaction(["pending"], "readwrite");
   const pendingStore = transaction.objectStore("pending");
 
